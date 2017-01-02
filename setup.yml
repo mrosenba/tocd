@@ -7,7 +7,7 @@
           - name:  clone petclinic
             git: repo=https://github.com/mrosenba/spring-petclinic.git dest=/home/ec2-user/petclinic
           - name: clone tocd
-            git: repo=https://github.com/mrosenba/tocd dest=/home/ec2-user/tocd
+            git: repo=https://github.com/mrosenba/tocd dest=/home/ec2-user/tocd update=no
           - name: install docker
             yum: name=docker state=latest
             become: yes
@@ -16,6 +16,7 @@
             user:
               name: ec2-user
               groups: docker
+              append: yes
             become: yes
             become_method: sudo
           - name: run docker
