@@ -11,4 +11,10 @@
           - name: install docker
             yum: name=docker state=latest
             become: yes
-            become_method: sudo 
+            become_method: sudo
+          - user:
+              name: docker
+              groups: ec2-user
+            become: yes
+            become_method: sudo
+                        
