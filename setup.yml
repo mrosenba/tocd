@@ -14,8 +14,8 @@
             become_method: sudo
           - name: add rights
             user:
-              name: docker
-              groups: ec2-user
+              name: ec2-user
+              groups: docker
             become: yes
             become_method: sudo
           - name: run docker
