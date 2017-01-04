@@ -30,7 +30,7 @@
                 src: http://apache.spd.co.il/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
                 dest: /home/ec2-user
                 copy: no
-                creates: /home/ec2-user/apache-maven
+                creates: /home/ec2-user/apache-maven-3.3.9
             become: yes
             become_method: sudo
 
