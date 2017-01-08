@@ -1,0 +1,24 @@
+- hosts: localhost
+  tasks:
+    - name: install git
+      yum: name=git state=latest
+      become: yes
+      become_method: sudo
+    - name: clone petclinic
+      git: repo=https://github.com/mrosenba/spring-petclinic.git dest=/home/ec2-user/petclinic
+    - name: clone tocd
+      git: repo=https://github.com/mrosenba/tocd.git dest=/home/ec2-user/tocd update=no
+    - name: install docker
+      become: yes
+      become_method: sudo
+      yum: name=docker state=latest
+    - name: add docker group to user ec2-user
+      user: name=ec2-user append=yes groups=docker
+      become: yes
+      become_method: sudo
+    - name: start the docker service
+      become: yes
+      become_method: sudo
+      service: name=docker state=started enabled=yes
+    - name: download and extract Maven
+      unarchive: dest=/home/ec2-user src=http://apache.mivzakim.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz copy=no creates=/home/ec2-user/apache-maven-3.3.9
